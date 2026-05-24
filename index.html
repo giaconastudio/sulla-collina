@@ -14,13 +14,13 @@
 
     :root {
       --cream:      #F8F5F0;
-      --cream-alt:  #F2EDE5;
+      --cream-alt:  #F0EAE1;
       --white:      #FDFCFA;
       --text:       #1E1B17;
       --text-mid:   #4A4540;
       --text-muted: #8A8278;
       --gold:       #9B7B3E;
-      --gold-rule:  #C4A97A;
+      --gold-light: #C4A97A;
       --border:     #DDD8D0;
     }
 
@@ -50,25 +50,22 @@
     nav.scrolled {
       background: rgba(248, 245, 240, 0.97);
       backdrop-filter: blur(12px);
-      padding: 1.1rem 4rem;
+      padding: 1.25rem 4rem;
       border-bottom-color: var(--border);
     }
 
-    /* Logo: image in nav */
-    .nav-logo-img {
-      height: 52px;
-      width: auto;
-      display: block;
-      transition: opacity 0.4s;
-      /* invert to white when on dark hero */
-      filter: invert(1) brightness(10) saturate(0);
-      opacity: 0.9;
+    /* Text-based logo — never breaks */
+    .nav-logo {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 0.16em;
+      color: rgba(255,255,255,0.95);
+      text-decoration: none;
+      transition: color 0.4s;
     }
 
-    nav.scrolled .nav-logo-img {
-      filter: none;
-      opacity: 1;
-    }
+    nav.scrolled .nav-logo { color: var(--text); }
 
     .nav-links {
       display: flex;
@@ -82,7 +79,7 @@
       font-weight: 400;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.8);
+      color: rgba(255,255,255,0.75);
       text-decoration: none;
       transition: color 0.3s;
     }
@@ -92,7 +89,7 @@
     nav.scrolled .nav-links a:hover { color: var(--gold); }
 
     .nav-reserve {
-      border-bottom: 1px solid rgba(255,255,255,0.5) !important;
+      border-bottom: 1px solid rgba(255,255,255,0.45) !important;
       padding-bottom: 1px;
       color: rgba(255,255,255,0.95) !important;
     }
@@ -119,7 +116,7 @@
 
     nav.scrolled .nav-toggle span { background: var(--text); }
 
-    /* ─── HERO (video) ─── */
+    /* ─── HERO ─── */
     .hero {
       height: 100vh;
       min-height: 680px;
@@ -130,6 +127,8 @@
       justify-content: center;
       text-align: center;
       overflow: hidden;
+      /* warm atmospheric fallback */
+      background: linear-gradient(160deg, #2C2318 0%, #1A150F 55%, #0E1208 100%);
     }
 
     .hero-video {
@@ -141,25 +140,15 @@
       object-position: center;
     }
 
-    /* fallback bg if video fails */
-    .hero-fallback {
-      position: absolute;
-      inset: 0;
-      background-image: url('images/hero.jpg');
-      background-size: cover;
-      background-position: center;
-      z-index: -1;
-    }
-
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
       background: linear-gradient(
         to bottom,
-        rgba(18,15,11,0.4) 0%,
-        rgba(18,15,11,0.15) 45%,
-        rgba(18,15,11,0.6) 100%
+        rgba(15,12,8,0.45) 0%,
+        rgba(15,12,8,0.1) 40%,
+        rgba(15,12,8,0.65) 100%
       );
       z-index: 1;
     }
@@ -172,49 +161,57 @@
       align-items: center;
     }
 
-    /* Logo badge in hero center */
+    /* Logo badge in hero — hidden if missing */
     .hero-logo {
-      width: 120px;
+      width: 110px;
       height: auto;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       filter: invert(1) brightness(10) saturate(0);
       opacity: 0;
       animation: fadeUp 1s ease 0.3s forwards;
     }
 
-    .hero-rule {
-      width: 36px;
-      height: 1px;
-      background: rgba(255,255,255,0.4);
-      margin: 2rem auto;
-      opacity: 0;
-      animation: fadeIn 1s ease 0.9s forwards;
-    }
+    .hero-logo.hidden { display: none; }
 
-    .hero-sub {
-      font-size: 0.65rem;
-      letter-spacing: 0.28em;
+    .hero-eyebrow {
+      font-size: 0.6rem;
+      letter-spacing: 0.38em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.6);
-      margin-bottom: 3rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1.75rem;
       opacity: 0;
-      animation: fadeUp 1s ease 0.8s forwards;
+      animation: fadeUp 1s ease 0.4s forwards;
     }
 
     .hero-title {
       font-family: 'Cormorant Garant', serif;
-      font-size: clamp(4.5rem, 11vw, 10rem);
+      font-size: clamp(5rem, 12vw, 11rem);
       font-weight: 300;
-      line-height: 0.9;
-      letter-spacing: 0.01em;
+      line-height: 0.88;
       color: #fff;
       opacity: 0;
-      animation: fadeUp 1.2s ease 0.5s forwards;
+      animation: fadeUp 1.2s ease 0.55s forwards;
     }
 
-    .hero-title em {
-      font-style: italic;
-      display: block;
+    .hero-title em { font-style: italic; display: block; }
+
+    .hero-rule {
+      width: 36px;
+      height: 1px;
+      background: rgba(255,255,255,0.35);
+      margin: 2.25rem auto;
+      opacity: 0;
+      animation: fadeIn 1s ease 1s forwards;
+    }
+
+    .hero-sub {
+      font-size: 0.63rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.9s forwards;
     }
 
     .hero-cta {
@@ -224,17 +221,14 @@
       text-transform: uppercase;
       color: #fff;
       text-decoration: none;
-      border: 1px solid rgba(255,255,255,0.5);
-      padding: 0.9rem 2.5rem;
+      border: 1px solid rgba(255,255,255,0.45);
+      padding: 1rem 2.75rem;
       transition: all 0.4s ease;
       opacity: 0;
       animation: fadeIn 1s ease 1.2s forwards;
     }
 
-    .hero-cta:hover {
-      background: #fff;
-      color: var(--text);
-    }
+    .hero-cta:hover { background: #fff; color: var(--text); }
 
     .hero-scroll {
       position: absolute;
@@ -253,7 +247,7 @@
     .scroll-bar {
       width: 1px;
       height: 44px;
-      background: rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.18);
       overflow: hidden;
       position: relative;
     }
@@ -265,29 +259,22 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255,255,255,0.65);
+      background: rgba(255,255,255,0.6);
       animation: scrollFall 2s ease-in-out infinite;
     }
 
-    @keyframes scrollFall {
-      0%   { top: -100%; }
-      100% { top: 100%; }
+    @keyframes scrollFall { 0% { top:-100%; } 100% { top:100%; } }
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(14px); }
+      to   { opacity:1; transform:translateY(0); }
     }
+    @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
 
     .scroll-text {
       font-size: 0.55rem;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
-    }
-
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to   { opacity: 1; }
+      color: rgba(255,255,255,0.38);
     }
 
     /* ─── SHARED ─── */
@@ -313,7 +300,7 @@
     .thin-rule {
       width: 36px;
       height: 1px;
-      background: var(--gold-rule);
+      background: var(--gold-light);
       margin: 2rem 0;
     }
 
@@ -322,17 +309,17 @@
     /* ─── STATEMENT ─── */
     .statement {
       background: var(--white);
-      padding: 6.5rem 4rem;
+      padding: 7rem 4rem;
       text-align: center;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
 
-    .statement-inner { max-width: 800px; margin: 0 auto; }
+    .statement-inner { max-width: 820px; margin: 0 auto; }
 
     .statement p {
       font-family: 'Cormorant Garant', serif;
-      font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+      font-size: clamp(1.5rem, 2.8vw, 2.4rem);
       font-weight: 300;
       font-style: italic;
       line-height: 1.65;
@@ -381,7 +368,10 @@
 
     .text-link:hover { color: var(--gold); border-color: var(--gold); }
 
-    .story-img-wrap { position: relative; }
+    /* Story image — atmospheric gradient fallback */
+    .story-img-wrap {
+      position: relative;
+    }
 
     .story-img-wrap::before {
       content: '';
@@ -389,14 +379,26 @@
       top: -16px; left: -16px; right: 16px; bottom: 16px;
       border: 1px solid rgba(196,169,122,0.3);
       pointer-events: none;
+      z-index: 0;
     }
 
-    .story-img-wrap img {
+    .story-img-bg {
       width: 100%;
       aspect-ratio: 3 / 4;
+      background: linear-gradient(160deg, #3a3228 0%, #2a2420 50%, #1e1c18 100%);
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .story-img-bg img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
-      position: relative;
+      color: transparent;
     }
 
     .story-caption {
@@ -406,7 +408,8 @@
       background: var(--cream-alt);
       border: 1px solid var(--border);
       padding: 1.25rem 1.5rem;
-      max-width: 200px;
+      max-width: 210px;
+      z-index: 2;
     }
 
     .story-caption p {
@@ -417,20 +420,18 @@
       line-height: 1.5;
     }
 
-    /* ─── CABIN DETAILS ─── */
+    /* ─── CABIN SPECS ─── */
     .cabin-details {
       background: var(--cream-alt);
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
-      padding: 5.5rem 0;
+      padding: 6rem 0;
     }
 
-    .cabin-details-inner {
+    .cabin-details-top {
       text-align: center;
-      margin-bottom: 4rem;
+      margin-bottom: 4.5rem;
     }
-
-    .cabin-details-inner .label { display: inline-block; }
 
     .cabin-heading {
       font-family: 'Cormorant Garant', serif;
@@ -441,76 +442,42 @@
 
     .cabin-heading em { font-style: italic; }
 
+    /* Specs as clean horizontal strip — no icons */
     .cabin-specs {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 0;
       border-top: 1px solid var(--border);
-      border-left: 1px solid var(--border);
     }
 
     .spec {
-      padding: 2.5rem 2rem;
-      border-right: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
+      padding: 3rem 2rem;
       text-align: center;
+      border-right: 1px solid var(--border);
     }
 
-    .spec-icon {
+    .spec:last-child { border-right: none; }
+
+    .spec-n {
       font-family: 'Cormorant Garant', serif;
-      font-size: 2rem;
+      font-size: 3rem;
       font-weight: 300;
       color: var(--gold);
-      margin-bottom: 0.75rem;
       line-height: 1;
+      margin-bottom: 0.75rem;
     }
 
     .spec-name {
       font-family: 'Cormorant Garant', serif;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 400;
+      color: var(--text);
       margin-bottom: 0.4rem;
     }
 
     .spec-note {
       font-size: 0.7rem;
       color: var(--text-muted);
-      letter-spacing: 0.08em;
-    }
-
-    /* ─── FULL IMAGE BREAK ─── */
-    .img-break {
-      height: 72vh;
-      min-height: 460px;
-      background-image: url('images/cabin-2.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
-      position: relative;
-    }
-
-    .img-break-veil {
-      position: absolute;
-      inset: 0;
-      background: rgba(18,15,11,0.38);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .img-break-quote {
-      text-align: center;
-      color: #fff;
-      padding: 0 2rem;
-    }
-
-    .img-break-quote blockquote {
-      font-family: 'Cormorant Garant', serif;
-      font-size: clamp(1.8rem, 4vw, 3.2rem);
-      font-weight: 300;
-      font-style: italic;
-      line-height: 1.4;
-      max-width: 760px;
+      letter-spacing: 0.06em;
     }
 
     /* ─── GALLERY ─── */
@@ -532,27 +499,88 @@
     .gallery-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 400px 280px;
+      grid-template-rows: 420px 300px;
       gap: 4px;
     }
 
-    .g { overflow: hidden; background: var(--cream-alt); }
+    .g {
+      overflow: hidden;
+      position: relative;
+    }
 
-    .g:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
-    .g:nth-child(2) { grid-column: 3;     grid-row: 1; }
-    .g:nth-child(3) { grid-column: 1;     grid-row: 2; }
-    .g:nth-child(4) { grid-column: 2 / 4; grid-row: 2; }
+    /* Each slot gets a unique warm fallback gradient */
+    .g:nth-child(1) {
+      grid-column: 1 / 3; grid-row: 1;
+      background: linear-gradient(135deg, #3D3228 0%, #26211A 60%, #1A1712 100%);
+    }
+    .g:nth-child(2) {
+      grid-column: 3; grid-row: 1;
+      background: linear-gradient(160deg, #2A3020 0%, #1C2216 60%, #141810 100%);
+    }
+    .g:nth-child(3) {
+      grid-column: 1; grid-row: 2;
+      background: linear-gradient(120deg, #2E2A1E 0%, #1E1C14 100%);
+    }
+    .g:nth-child(4) {
+      grid-column: 2 / 4; grid-row: 2;
+      background: linear-gradient(140deg, #382E22 0%, #221E18 100%);
+    }
 
     .g img {
+      position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       display: block;
-      transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), filter 0.8s ease;
-      filter: saturate(0.9);
+      transition: transform 1s cubic-bezier(0.25,0.46,0.45,0.94), filter 0.8s ease;
+      filter: saturate(0.88);
+      color: transparent; /* hides alt text when image missing */
     }
 
     .g:hover img { transform: scale(1.04); filter: saturate(1.05); }
+
+    /* ─── FULL IMAGE BREAK ─── */
+    .img-break {
+      height: 72vh;
+      min-height: 460px;
+      position: relative;
+      /* Warm dark fallback — looks intentional without the image */
+      background: linear-gradient(160deg, #2C2318 0%, #1A150F 60%, #0E1208 100%);
+    }
+
+    .img-break-photo {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/cabin-2.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .img-break-veil {
+      position: absolute;
+      inset: 0;
+      background: rgba(12,10,7,0.42);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .img-break-quote {
+      text-align: center;
+      color: #fff;
+      padding: 0 2rem;
+    }
+
+    .img-break-quote blockquote {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(1.8rem, 4vw, 3.2rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.45;
+      max-width: 760px;
+    }
 
     /* ─── STATS ─── */
     .stats {
@@ -584,10 +612,7 @@
       margin-bottom: 0.6rem;
     }
 
-    .stat-n small {
-      font-size: 1.6rem;
-      vertical-align: baseline;
-    }
+    .stat-n small { font-size: 1.6rem; vertical-align: baseline; }
 
     .stat-label {
       font-size: 0.62rem;
@@ -624,44 +649,28 @@
       color: var(--text-mid);
     }
 
-    /* experience cards with images */
     .experience-cards {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
-      gap: 1.5rem;
     }
 
     .exp-card {
       display: flex;
       flex-direction: column;
+      padding: 2.5rem 2rem 2.5rem 0;
+      border-right: 1px solid var(--border);
     }
 
-    .exp-img {
-      width: 100%;
-      aspect-ratio: 3 / 2;
-      object-fit: cover;
-      display: block;
-      filter: saturate(0.85);
-      transition: filter 0.5s, transform 0.6s;
-      overflow: hidden;
-    }
-
-    .exp-img-wrap {
-      overflow: hidden;
-      margin-bottom: 1.5rem;
-    }
-
-    .exp-img-wrap:hover .exp-img {
-      filter: saturate(1);
-      transform: scale(1.04);
-    }
+    .exp-card:last-child { border-right: none; }
+    .exp-card:not(:first-child) { padding-left: 2rem; padding-right: 2rem; }
+    .exp-card:last-child { padding-right: 0; }
 
     .exp-num {
       font-family: 'Cormorant Garant', serif;
       font-size: 0.85rem;
       font-weight: 300;
       color: var(--gold);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.5rem;
       letter-spacing: 0.1em;
     }
 
@@ -669,7 +678,7 @@
       font-family: 'Cormorant Garant', serif;
       font-size: 1.2rem;
       font-weight: 400;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.7rem;
     }
 
     .exp-card p {
@@ -725,17 +734,13 @@
     }
 
     .pill-dot {
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--gold);
       animation: pulse 2s ease infinite;
     }
 
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50%       { opacity: 0.4; }
-    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
 
     .founder-pill span {
       font-size: 0.6rem;
@@ -744,21 +749,12 @@
       color: var(--gold);
     }
 
-    /* FORM */
-    .form-wrap {
-      max-width: 740px;
-      margin: 0 auto;
-    }
+    /* ─── FORM ─── */
+    .form-wrap { max-width: 740px; margin: 0 auto; }
 
-    .inquiry-form {
-      display: flex;
-      flex-direction: column;
-    }
+    .inquiry-form { display: flex; flex-direction: column; }
 
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; }
 
     .form-group {
       display: flex;
@@ -797,8 +793,7 @@
     .form-group textarea::placeholder { color: var(--border); }
 
     .form-group input[type="date"]::-webkit-calendar-picker-indicator {
-      opacity: 0.3;
-      cursor: pointer;
+      opacity: 0.3; cursor: pointer;
     }
 
     .form-group textarea { resize: none; min-height: 75px; }
@@ -832,7 +827,7 @@
 
     .btn-submit {
       flex-shrink: 0;
-      padding: 0.95rem 2.5rem;
+      padding: 1rem 2.5rem;
       background: var(--text);
       color: var(--cream);
       border: none;
@@ -855,12 +850,23 @@
       text-align: center;
     }
 
+    /* Logo image in footer — hidden if missing, text fallback shows */
     .footer-logo-img {
       height: 90px;
       width: auto;
-      margin: 0 auto 2.5rem;
+      margin: 0 auto 2rem;
       display: block;
-      opacity: 0.85;
+      opacity: 0.9;
+    }
+
+    .footer-logo-text {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      margin-bottom: 2rem;
+      display: none; /* shown by JS if image fails */
     }
 
     .footer-tagline {
@@ -874,7 +880,7 @@
     .footer-rule {
       width: 30px;
       height: 1px;
-      background: var(--gold-rule);
+      background: var(--gold-light);
       margin: 0 auto 2.5rem;
     }
 
@@ -911,6 +917,9 @@
     @media (max-width: 1100px) {
       .experience-cards { grid-template-columns: repeat(3, 1fr); }
       .cabin-specs { grid-template-columns: repeat(2, 1fr); }
+      .spec:nth-child(2) { border-right: none; }
+      .spec:nth-child(3) { border-top: 1px solid var(--border); }
+      .spec:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
     }
 
     @media (max-width: 900px) {
@@ -918,23 +927,25 @@
       nav.scrolled { padding: 1.1rem 2rem; }
       .container { padding: 0 2rem; }
       .section { padding: 6rem 0; }
+      .section-sm { padding: 4rem 0; }
 
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
 
       .story-grid { grid-template-columns: 1fr; gap: 3rem; }
       .story-img-wrap { order: -1; }
-      .story-caption { display: none; }
       .story-img-wrap::before { display: none; }
+      .story-caption { display: none; }
 
       .experience-header { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; padding-bottom: 3rem; }
       .experience-cards { grid-template-columns: 1fr 1fr; gap: 2rem; }
 
       .gallery-grid {
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 260px 260px;
+        grid-template-rows: 280px 220px;
       }
-      .g:nth-child(1) { grid-column: 1 / 3; }
+
+      .g:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
       .g:nth-child(2) { grid-column: 1; grid-row: 2; }
       .g:nth-child(3) { grid-column: 2; grid-row: 2; }
       .g:nth-child(4) { display: none; }
@@ -949,27 +960,24 @@
       .form-submit-row { flex-direction: column; align-items: flex-start; }
       .btn-submit { width: 100%; text-align: center; }
 
-      .img-break { background-attachment: scroll; }
+      .img-break-photo { background-attachment: scroll; }
       footer { padding: 4rem 2rem 3rem; }
+      .statement { padding: 5rem 2rem; }
     }
 
     @media (max-width: 600px) {
-      .hero-title { font-size: clamp(3.5rem, 18vw, 5.5rem); }
-      .statement { padding: 5rem 2rem; }
+      .hero-title { font-size: clamp(4rem, 18vw, 6rem); }
       .experience-cards { grid-template-columns: 1fr; }
       .cabin-specs { grid-template-columns: 1fr 1fr; }
-      footer { padding: 4rem 1.5rem 3rem; }
     }
 
   </style>
 </head>
 <body>
 
-  <!-- NAV -->
+  <!-- NAV — text logo, never breaks -->
   <nav id="nav">
-    <a href="#">
-      <img src="images/logo.png" alt="Sulla Collina" class="nav-logo-img">
-    </a>
+    <a href="#" class="nav-logo">Sulla Collina</a>
     <ul class="nav-links">
       <li><a href="#story">The Retreat</a></li>
       <li><a href="#gallery">Gallery</a></li>
@@ -981,14 +989,15 @@
     </div>
   </nav>
 
-  <!-- HERO (video background) -->
+  <!-- HERO -->
   <section class="hero">
-    <div class="hero-fallback"></div>
     <video class="hero-video" autoplay muted loop playsinline>
       <source src="images/hero.mov" type="video/mp4">
     </video>
     <div class="hero-content">
-      <img src="images/logo.png" alt="Sulla Collina" class="hero-logo">
+      <img src="images/logo.png" alt="" class="hero-logo" id="heroLogo"
+           onerror="this.classList.add('hidden')">
+      <p class="hero-eyebrow">Finger Lakes &nbsp;&middot;&nbsp; New York</p>
       <h1 class="hero-title">
         Sulla<br><em>Collina</em>
       </h1>
@@ -1031,8 +1040,10 @@
           <a href="#reserve" class="text-link" style="margin-top:1.75rem;">Inquire about early access</a>
         </div>
         <div class="story-img-wrap reveal" style="transition-delay:0.15s;">
-          <img src="images/cabin-4.jpg" alt="Sulla Collina retreat exterior at golden hour"
-               onerror="this.style.display='none'">
+          <div class="story-img-bg">
+            <img src="images/cabin-4.jpg" alt="Sulla Collina retreat exterior at golden hour"
+                 onerror="this.style.display='none'">
+          </div>
           <div class="story-caption">
             <p>Above Cayuga Lake &mdash; Union Springs, NY</p>
           </div>
@@ -1041,32 +1052,32 @@
     </div>
   </section>
 
-  <!-- CABIN DETAILS -->
+  <!-- CABIN SPECS -->
   <div class="cabin-details">
     <div class="container">
-      <div class="cabin-details-inner reveal">
+      <div class="cabin-details-top reveal">
         <span class="label">The Cabin</span>
         <h2 class="cabin-heading">Thoughtfully <em>designed</em></h2>
         <div class="thin-rule thin-rule-c" style="margin-top:1.5rem;"></div>
       </div>
       <div class="cabin-specs reveal" style="transition-delay:0.1s;">
         <div class="spec">
-          <div class="spec-icon">2</div>
+          <div class="spec-n">2</div>
           <div class="spec-name">Bedrooms</div>
           <div class="spec-note">Restful, private retreats</div>
         </div>
         <div class="spec">
-          <div class="spec-icon">&#9632;</div>
+          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Kitchen</div>
           <div class="spec-name">Full Kitchen</div>
           <div class="spec-note">Cook-in or dine local</div>
         </div>
         <div class="spec">
-          <div class="spec-icon">&#9633;</div>
+          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Living</div>
           <div class="spec-name">Living Room</div>
           <div class="spec-note">Open, light-filled common space</div>
         </div>
         <div class="spec">
-          <div class="spec-icon">&#9700;</div>
+          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Porch</div>
           <div class="spec-name">Covered Porch</div>
           <div class="spec-note">Views toward the lake &amp; vineyards</div>
         </div>
@@ -1099,8 +1110,9 @@
     </div>
   </section>
 
-  <!-- FULL IMAGE BREAK -->
+  <!-- FULL BLEED BREAK -->
   <div class="img-break">
+    <div class="img-break-photo"></div>
     <div class="img-break-veil">
       <div class="img-break-quote">
         <blockquote>"Unwind under endless stars, sip wine by the fire, and take in one of the most beautiful sunsets you will ever see."</blockquote>
@@ -1146,45 +1158,30 @@
       </div>
       <div class="experience-cards">
         <div class="exp-card reveal">
-          <div class="exp-img-wrap">
-            <img class="exp-img" src="https://images.unsplash.com/photo-1530053969600-caed2596d242?auto=format&fit=crop&w=600&q=75" alt="Cayuga Lake dock at sunset">
-          </div>
           <div class="exp-num">01</div>
           <h3>Cayuga Lake</h3>
-          <p>Bring your boat and enjoy easy access to nearby launches. One of the most expansive and scenic stretches of water in the entire Finger Lakes.</p>
+          <p>Bring your boat and enjoy easy access to nearby launches. One of the most expansive stretches of water in the Finger Lakes.</p>
           <span class="exp-dist">Minutes away</span>
         </div>
         <div class="exp-card reveal" style="transition-delay:0.08s;">
-          <div class="exp-img-wrap">
-            <img class="exp-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=75" alt="Finger Lakes vineyard">
-          </div>
           <div class="exp-num">02</div>
           <h3>Local Wineries</h3>
           <p>Walking distance to acclaimed local wineries. Vineyard sunsets from the Finger Lakes wine trail rival anywhere in the world.</p>
           <span class="exp-dist">Walking distance</span>
         </div>
         <div class="exp-card reveal" style="transition-delay:0.16s;">
-          <div class="exp-img-wrap">
-            <img class="exp-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=75" alt="Artisan ceramics craft">
-          </div>
           <div class="exp-num">03</div>
           <h3>MacKenzie-Childs</h3>
           <p>Wander the iconic MacKenzie-Childs campus — a beloved Finger Lakes destination celebrated for whimsical design and artisan craft.</p>
           <span class="exp-dist">Under 10 minutes</span>
         </div>
         <div class="exp-card reveal" style="transition-delay:0.24s;">
-          <div class="exp-img-wrap">
-            <img class="exp-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=600&q=75" alt="Lakeside luxury inn">
-          </div>
           <div class="exp-num">04</div>
           <h3>Inns of Aurora</h3>
-          <p>Experience the charm and luxury of the Inns of Aurora, one of the most celebrated lakeside retreats in the entire Northeast.</p>
+          <p>Experience the charm and luxury of the Inns of Aurora, one of the most celebrated lakeside retreats in the Northeast.</p>
           <span class="exp-dist">Under 10 minutes</span>
         </div>
         <div class="exp-card reveal" style="transition-delay:0.32s;">
-          <div class="exp-img-wrap">
-            <img class="exp-img" src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=600&q=75" alt="Forest gorge hiking trail">
-          </div>
           <div class="exp-num">05</div>
           <h3>Great Gully Preserve</h3>
           <p>Hike breathtaking trails through ancient gorges and old-growth forest — one of the Finger Lakes' most stunning natural escapes.</p>
@@ -1273,7 +1270,9 @@
 
   <!-- FOOTER -->
   <footer>
-    <img src="images/logo.png" alt="Sulla Collina" class="footer-logo-img">
+    <img src="images/logo.png" alt="Sulla Collina" class="footer-logo-img" id="footerLogo"
+         onerror="this.style.display='none'; document.getElementById('footerLogoText').style.display='block';">
+    <div class="footer-logo-text" id="footerLogoText">Sulla Collina</div>
     <div class="footer-tagline">A Boutique Lakeview Retreat &nbsp;&middot;&nbsp; Union Springs, New York</div>
     <div class="footer-rule"></div>
     <div class="footer-email">
@@ -1283,6 +1282,11 @@
   </footer>
 
   <script>
+    // Hide broken local images gracefully (show gradient fallback instead)
+    document.querySelectorAll('img[src^="images/"]').forEach(img => {
+      img.addEventListener('error', () => { img.style.opacity = '0'; });
+    });
+
     // Nav scroll
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
@@ -1292,32 +1296,24 @@
     // Scroll reveal
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          io.unobserve(e.target);
-        }
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
       });
     }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     // Mobile nav
     const toggle = document.getElementById('navToggle');
-    const links = document.querySelector('.nav-links');
+    const links  = document.querySelector('.nav-links');
     toggle.addEventListener('click', () => {
       const open = links.style.display === 'flex';
       if (open) {
         links.style.display = 'none';
       } else {
         Object.assign(links.style, {
-          display: 'flex',
-          flexDirection: 'column',
-          position: 'absolute',
-          top: '100%',
-          left: '0',
-          right: '0',
+          display: 'flex', flexDirection: 'column',
+          position: 'absolute', top: '100%', left: '0', right: '0',
           background: 'rgba(248,245,240,0.98)',
-          padding: '1.5rem 2rem 2rem',
-          gap: '1.5rem',
+          padding: '1.5rem 2rem 2rem', gap: '1.5rem',
           borderBottom: '1px solid var(--border)'
         });
         links.querySelectorAll('a').forEach(a => a.style.color = 'var(--text-muted)');
