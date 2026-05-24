@@ -432,15 +432,13 @@
 
     /* ─── CABIN SPECS ─── */
     .cabin-details {
-      background: var(--white);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 6rem 0;
+      background: #EAF0E5;
+      padding: 7rem 0;
     }
 
     .cabin-details-top {
       text-align: center;
-      margin-bottom: 4.5rem;
+      margin-bottom: 5rem;
     }
 
     .cabin-heading {
@@ -455,27 +453,28 @@
     .cabin-specs {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
 
     .spec {
-      padding: 3rem 2rem;
-      text-align: center;
-      background: var(--cream);
-      border: 1px solid var(--border);
+      padding: 3rem 2rem 3rem;
+      text-align: left;
+      background: var(--white);
+      border-top: 2px solid var(--gold);
+      display: flex;
+      flex-direction: column;
     }
 
     .spec-n {
       display: flex;
-      align-items: center;
-      justify-content: center;
+      align-items: flex-start;
       color: var(--gold);
-      margin-bottom: 0.75rem;
+      margin-bottom: 2rem;
     }
 
     .spec-n svg {
-      width: 40px;
-      height: 40px;
+      width: 36px;
+      height: 36px;
       stroke: var(--gold);
       stroke-width: 1.25;
       fill: none;
@@ -485,16 +484,19 @@
 
     .spec-name {
       font-family: 'Cormorant Garant', serif;
-      font-size: 1.15rem;
+      font-size: 1.4rem;
       font-weight: 400;
       color: var(--text);
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.6rem;
+      line-height: 1.2;
     }
 
     .spec-note {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: var(--text-muted);
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
+      line-height: 1.7;
+      margin-top: auto;
     }
 
     /* ─── GALLERY ─── */
