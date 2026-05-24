@@ -744,6 +744,49 @@
       margin-top: auto;
     }
 
+    /* ─── INSTAGRAM ─── */
+    .instagram {
+      background: var(--cream-alt);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 7rem 0;
+      text-align: center;
+    }
+
+    .instagram-inner { max-width: 680px; margin: 0 auto; padding: 0 2rem; }
+
+    .instagram-heading {
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(2.2rem, 3.5vw, 3.6rem);
+      font-weight: 300;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    .instagram-heading em { font-style: italic; }
+
+    .instagram-sub {
+      font-size: 0.85rem;
+      line-height: 1.95;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+    }
+
+    .instagram-handle {
+      display: inline-block;
+      font-family: 'Cormorant Garant', serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-style: italic;
+      font-weight: 300;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--gold-light);
+      padding-bottom: 3px;
+      transition: color 0.3s, border-color 0.3s;
+    }
+
+    .instagram-handle:hover { color: var(--gold); border-color: var(--gold); }
+
     /* ─── RESERVE ─── */
     .reserve { background: var(--white); }
 
@@ -1087,7 +1130,8 @@
         </div>
         <div class="story-img-wrap reveal" style="transition-delay:0.15s;">
           <div class="story-img-bg">
-            <img src="images/cabin-4.jpg" alt="Sulla Collina retreat exterior at golden hour"
+            <img src="images/cayuga-lake-aerial.jpg" alt="Cayuga Lake aerial at sunset"
+                 style="object-position: center 35%;"
                  onerror="this.style.display='none'">
           </div>
           <div class="story-caption">
@@ -1270,6 +1314,17 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="instagram">
+    <div class="instagram-inner reveal">
+      <span class="label" style="display:block; margin-bottom:1.75rem;">Follow Along</span>
+      <h2 class="instagram-heading">Watch us build<br><em>something special</em></h2>
+      <div class="thin-rule thin-rule-c"></div>
+      <p class="instagram-sub">We are sharing the journey — from raw land to a finished retreat — on Instagram. Follow along as the property takes shape, one post at a time.</p>
+      <a href="https://www.instagram.com/sullacollina" target="_blank" rel="noopener" class="instagram-handle">@sullacollina</a>
     </div>
   </section>
 
