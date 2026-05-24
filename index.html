@@ -174,13 +174,14 @@
     .hero-logo.hidden { display: none; }
 
     .hero-eyebrow {
-      font-size: 0.6rem;
-      letter-spacing: 0.38em;
+      font-size: 0.65rem;
+      letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.82);
       margin-bottom: 1.75rem;
       opacity: 0;
       animation: fadeUp 1s ease 0.4s forwards;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
     }
 
     .hero-title {
@@ -205,13 +206,14 @@
     }
 
     .hero-sub {
-      font-size: 0.63rem;
-      letter-spacing: 0.28em;
+      font-size: 0.68rem;
+      letter-spacing: 0.24em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.82);
       margin-bottom: 3rem;
       opacity: 0;
       animation: fadeUp 1s ease 0.9s forwards;
+      text-shadow: 0 1px 8px rgba(0,0,0,0.4);
     }
 
     .hero-cta {
@@ -1010,11 +1012,17 @@
     }
 
     @media (max-width: 900px) {
-      nav { padding: 1.5rem 2rem; }
-      nav.scrolled { padding: 1.1rem 2rem; }
-      .container { padding: 0 2rem; }
-      .section { padding: 6rem 0; }
-      .section-sm { padding: 4rem 0; }
+      nav { padding: 1.5rem 1.5rem; }
+      nav.scrolled { padding: 1.1rem 1.5rem; }
+      .nav-logo { font-size: 1.1rem; }
+      .container { padding: 0 1.5rem; }
+      .section { padding: 5rem 0; }
+      .section-sm { padding: 3.5rem 0; }
+      .hero-eyebrow { font-size: 0.6rem; letter-spacing: 0.22em; }
+      .hero-sub { font-size: 0.6rem; letter-spacing: 0.18em; }
+      .hero-cta { padding: 0.9rem 2rem; font-size: 0.58rem; }
+      .statement { padding: 4rem 1.5rem; }
+      .statement p { font-size: clamp(1.3rem, 4.5vw, 2rem); }
 
       .nav-links { display: none; }
       .nav-toggle { display: flex; }
@@ -1152,24 +1160,24 @@
       </div>
       <div class="cabin-specs reveal" style="transition-delay:0.1s;">
         <div class="spec">
-          <div class="spec-n">2</div>
+          <div class="spec-n">Two</div>
           <div class="spec-name">Bedrooms</div>
-          <div class="spec-note">Restful, private retreats</div>
+          <div class="spec-note">Private sanctuaries designed for complete rest</div>
         </div>
         <div class="spec">
-          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Kitchen</div>
-          <div class="spec-name">Full Kitchen</div>
-          <div class="spec-note">Cook-in or dine local</div>
+          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Full</div>
+          <div class="spec-name">Kitchen</div>
+          <div class="spec-note">Slow mornings, long dinners, everything in between</div>
         </div>
         <div class="spec">
-          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Living</div>
+          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Open</div>
           <div class="spec-name">Living Room</div>
-          <div class="spec-note">Open, light-filled common space</div>
+          <div class="spec-note">Light pours through — the view is always with you</div>
         </div>
         <div class="spec">
-          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Porch</div>
-          <div class="spec-name">Covered Porch</div>
-          <div class="spec-note">Views toward the lake &amp; vineyards</div>
+          <div class="spec-n" style="font-size:1.6rem; padding-top:0.7rem;">Covered</div>
+          <div class="spec-name">Porch</div>
+          <div class="spec-note">Cayuga Lake sunsets — yours every evening</div>
         </div>
       </div>
     </div>
