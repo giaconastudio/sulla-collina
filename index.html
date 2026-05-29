@@ -453,30 +453,30 @@
     .cabin-specs {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.45);
     }
 
     .spec {
-      padding: 3rem 2rem 3rem;
-      text-align: left;
-      background: var(--white);
-      border-top: 2px solid var(--gold);
-      display: flex;
-      flex-direction: column;
+      padding: 4rem 2.5rem;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.45);
     }
+
+    .spec:last-child { border-right: none; }
 
     .spec-n {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
+      justify-content: center;
       color: var(--gold);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
 
     .spec-n svg {
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       stroke: var(--gold);
-      stroke-width: 1.25;
+      stroke-width: 1.2;
       fill: none;
       stroke-linecap: round;
       stroke-linejoin: round;
@@ -484,19 +484,26 @@
 
     .spec-name {
       font-family: 'Cormorant Garant', serif;
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 400;
       color: var(--text);
-      margin-bottom: 0.6rem;
+      margin-bottom: 0.75rem;
       line-height: 1.2;
+    }
+
+    .spec-rule {
+      width: 24px;
+      height: 1px;
+      background: var(--gold-light);
+      margin: 0 auto 0.75rem;
+      opacity: 0.7;
     }
 
     .spec-note {
       font-size: 0.72rem;
-      color: var(--text-muted);
-      letter-spacing: 0.04em;
-      line-height: 1.7;
-      margin-top: auto;
+      color: rgba(30,27,23,0.6);
+      letter-spacing: 0.05em;
+      line-height: 1.75;
     }
 
     /* ─── GALLERY ─── */
@@ -603,7 +610,9 @@
 
     /* ─── STATS ─── */
     .stats {
-      background: var(--text);
+      background: #F5EDD8;
+      border-top: 1px solid #E8DFC8;
+      border-bottom: 1px solid #E8DFC8;
       padding: 5.5rem 0;
     }
 
@@ -615,7 +624,7 @@
 
     .stat {
       padding: 2rem 1.5rem;
-      border-right: 1px solid rgba(255,255,255,0.1);
+      border-right: 1px solid #E0D5BC;
     }
 
     .stat:last-child { border-right: none; }
@@ -624,18 +633,28 @@
       font-family: 'Cormorant Garant', serif;
       font-size: 3.8rem;
       font-weight: 300;
-      color: var(--cream);
+      color: var(--text);
       line-height: 1;
       margin-bottom: 0.75rem;
     }
 
-    .stat-n small { font-size: 1.8rem; vertical-align: baseline; color: rgba(248,245,240,0.65); }
+    .stat-n small { font-size: 1.8rem; vertical-align: baseline; color: var(--text-muted); }
+
+    .stat-n svg {
+      width: 52px;
+      height: 52px;
+      stroke: var(--text);
+      stroke-width: 1.1;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
 
     .stat-label {
       font-size: 0.62rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold-light);
+      color: var(--gold);
     }
 
     /* ─── EXPERIENCE ─── */
@@ -1021,8 +1040,10 @@
 
     /* ─── RESPONSIVE ─── */
     @media (max-width: 1100px) {
-      /* Cards wrap naturally with gap — no border overrides needed */
       .cabin-specs { grid-template-columns: repeat(2, 1fr); }
+      .spec:nth-child(2) { border-right: none; }
+      .spec:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.45); }
+      .spec:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.45); border-right: none; }
     }
 
     @media (max-width: 900px) {
@@ -1062,8 +1083,8 @@
 
       .stats-row { grid-template-columns: 1fr 1fr; }
       .stat:nth-child(2) { border-right: none; }
-      .stat:nth-child(3) { border-top: 1px solid rgba(255,255,255,0.1); }
-      .stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,0.1); border-right: none; }
+      .stat:nth-child(3) { border-top: 1px solid #E0D5BC; }
+      .stat:nth-child(4) { border-top: 1px solid #E0D5BC; border-right: none; }
 
       .form-row { grid-template-columns: 1fr; }
       .form-group { border-right: none; }
@@ -1080,7 +1101,8 @@
       .hero-sub { font-size: 0.52rem; letter-spacing: 0.1em; white-space: nowrap; }
       .experience-cards { grid-template-columns: 1fr; }
       .exp-card:nth-child(5) { grid-column: auto; }
-      .cabin-specs { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+      .cabin-specs { grid-template-columns: 1fr 1fr; }
+      .spec { padding: 2.5rem 1.5rem; }
       .stat-n { font-size: 2.8rem; }
     }
 
@@ -1181,6 +1203,7 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M2 20v-6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v6"/><path d="M2 14V9a2 2 0 0 1 2-2h1V5a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2h1a2 2 0 0 1 2 2v5"/><path d="M2 17h20"/><path d="M7 12h4"/></svg>
           </div>
           <div class="spec-name">Bedrooms</div>
+          <div class="spec-rule"></div>
           <div class="spec-note">Private sanctuaries designed for complete rest</div>
         </div>
         <div class="spec">
@@ -1189,6 +1212,7 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 2v7c0 1.657 1.343 3 3 3s3-1.343 3-3V2"/><path d="M6 13v9"/><path d="M6 2v4"/><path d="M15 2c0 0 4 2.5 4 8s-4 8-4 8"/><path d="M17 22V10"/></svg>
           </div>
           <div class="spec-name">Kitchen</div>
+          <div class="spec-rule"></div>
           <div class="spec-note">Slow mornings, long dinners, everything in between</div>
         </div>
         <div class="spec">
@@ -1197,6 +1221,7 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 9V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v2"/><path d="M2 11a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-4z"/><path d="M6 17v2"/><path d="M18 17v2"/><path d="M2 13h20"/></svg>
           </div>
           <div class="spec-name">Living Room</div>
+          <div class="spec-rule"></div>
           <div class="spec-note">Light pours through — the view is always with you</div>
         </div>
         <div class="spec">
@@ -1205,6 +1230,7 @@
             <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 10L12 3l9 7"/><path d="M5 10v9a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-9"/><path d="M9 21v-6h6v6"/><path d="M3 10h18"/></svg>
           </div>
           <div class="spec-name">Covered Porch</div>
+          <div class="spec-rule"></div>
           <div class="spec-note">Cayuga Lake sunsets — yours every evening</div>
         </div>
       </div>
@@ -1255,7 +1281,9 @@
           <div class="stat-label">To Cayuga Lake launches</div>
         </div>
         <div class="stat reveal" style="transition-delay:0.1s;">
-          <div class="stat-n">Walk</div>
+          <div class="stat-n">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="13" cy="4" r="1.5"/><path d="M10.5 8.5l2 2.5 3.5-2.5"/><path d="M12.5 11l-2 6"/><path d="M8.5 21l3-5.5"/><path d="M12.5 17l2.5 4"/><path d="M15.5 8.5l1.5 4.5"/></svg>
+          </div>
           <div class="stat-label">To local wineries</div>
         </div>
         <div class="stat reveal" style="transition-delay:0.2s;">
